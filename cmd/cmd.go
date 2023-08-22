@@ -29,19 +29,20 @@ import (
 )
 
 const (
-	flagNameProject       = "project"
-	flagNameInstance      = "instance"
-	flagNameDatabase      = "database"
-	flagNameDirectory     = "directory"
-	flagCredentialsFile   = "credentials_file"
-	flagNameSchemaFile    = "schema_file"
-	flagDDLFile           = "ddl"
-	flagDMLFile           = "dml"
-	flagPartitioned       = "partitioned"
-	flagPriority          = "priority"
-	flagNode              = "node"
-	flagTimeout           = "timeout"
-	defaultSchemaFileName = "schema.sql"
+	flagNameProject        = "project"
+	flagNameInstance       = "instance"
+	flagNameDatabase       = "database"
+	flagNameDirectory      = "directory"
+	flagNameMigrationTable = "migration_table"
+	flagCredentialsFile    = "credentials_file"
+	flagNameSchemaFile     = "schema_file"
+	flagDDLFile            = "ddl"
+	flagDMLFile            = "dml"
+	flagPartitioned        = "partitioned"
+	flagPriority           = "priority"
+	flagNode               = "node"
+	flagTimeout            = "timeout"
+	defaultSchemaFileName  = "schema.sql"
 )
 
 func newSpannerClient(ctx context.Context, c *cobra.Command) (*spanner.Client, error) {

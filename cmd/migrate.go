@@ -33,7 +33,10 @@ import (
 )
 
 const (
-	migrationsDirName  = "migrations"
+	migrationsDirName = "migrations"
+)
+
+var (
 	migrationTableName = "SchemaMigrations"
 )
 
@@ -41,6 +44,7 @@ const (
 var migrateCmd = &cobra.Command{
 	Use:   "migrate",
 	Short: "Migrate database",
+	RunE:  migrateRoot,
 }
 
 func init() {
@@ -73,6 +77,16 @@ func init() {
 	)
 
 	migrateCmd.PersistentFlags().String(flagNameDirectory, "", "Directory that migration files placed (required)")
+	migrateCmd.PersistentFlags().String(flagNameMigrationTable, "", "Table in database used for schema version")
+}
+
+func migrateRoot(c *cobra.Command, args []string) error {
+	table := c.Flag(flagNameMigrationTable).Value.String()
+	if len(strings.TrimSpace(table)) != 0 {
+		fmt.Printf("using custom migration table %q\n", table)
+		migrationTableName = table
+	}
+	return nil
 }
 
 func migrateCreate(c *cobra.Command, args []string) error {
